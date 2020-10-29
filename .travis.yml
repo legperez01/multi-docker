@@ -8,7 +8,7 @@ before_install:
 script:
     - docker run legperez/react-test npm test -- --coverage
 
-#buil proccess after install
+# buil proccess after install
 after_success:
     - docker build -t legperez/multi-client ./client 
     - docker build -t legperez/multi-nginx ./nginx
@@ -21,3 +21,6 @@ after_success:
     - docker push legperez/multi-nginx
     - docker push legperez/multi-server
     - docker push legperez/multi-worker
+
+
+# Why you do me this
