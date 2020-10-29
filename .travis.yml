@@ -21,6 +21,3 @@ after_success:
     - docker push legperez/multi-nginx
     - docker push legperez/multi-server
     - docker push legperez/multi-worker
-
-
-# Why you do me this
