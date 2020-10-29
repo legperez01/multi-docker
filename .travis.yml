@@ -1,0 +1,23 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t legperez/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run legperez/react-test npm test -- --coverage
+
+#buil proccess after install
+after_success:
+    - docker build -t legperez/multi-client ./client 
+    - docker build -t legperez/multi-nginx ./nginx
+    - docker build -t legperez/multi-server ./server
+    - docker build -t legperez/multi-worker ./worker
+# Log in ti the docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# Take those images and push them to docker hub
+    - docker push legperez/multi-client
+    - docker push legperez/multi-nginx
+    - docker push legperez/multi-server
+    - docker push legperez/multi-worker
