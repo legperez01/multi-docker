@@ -12,14 +12,14 @@ services:
         build: 
             dockerfile: Dockerfile.dev
             context: ./nginx
-            image: legperez/multi-nginx
+        image: legperez/multi-nginx
         ports: 
             - '3050:80'
     api:
         build: 
             dockerfile: Dockerfile.dev
             context: ./server
-            image: legperez/multi-api
+        image: legperez/multi-api
         volumes: 
             - /app/node_modules
             - ./server/app
@@ -35,7 +35,7 @@ services:
         build: 
             dockerfile: Dockerfile.dev
             context: ./worker
-            image: legperez/multi-worker
+        image: legperez/multi-worker
         volumes:
             - /app/node_modules
             - ./worker:/app
