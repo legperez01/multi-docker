@@ -11,15 +11,13 @@ services:
         restart: always
         build: 
             dockerfile: Dockerfile.dev
-            context: ./nginx
-        image: legperez/multi-nginx
+            context: ./nginx       
         ports: 
             - '3050:80'
     api:
         build: 
             dockerfile: Dockerfile.dev
-            context: ./server
-        image: legperez/multi-api
+            context: ./server       
         volumes: 
             - /app/node_modules
             - ./server/app
@@ -35,7 +33,6 @@ services:
         build: 
             dockerfile: Dockerfile.dev
             context: ./worker
-        image: legperez/multi-worker
         volumes:
             - /app/node_modules
             - ./worker:/app
@@ -45,8 +42,7 @@ services:
     client:
         build: 
             dockerfile: Dockerfile.dev
-            context: ./client
-        image: legperez/multi-client
+            context: ./client        
         volumes: 
             - /app/node_modules
             - ./client:/app
